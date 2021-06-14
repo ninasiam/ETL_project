@@ -1,0 +1,27 @@
+#!/bin/bash
+
+path_logs="../raw_data/data"
+prefix="data"
+suffix="_tranformed"
+n_files=20
+out_dir="transformed_data"
+out_file_name="part-00000"
+echo "Entering: ${path}"
+cd ${path_logs}
+
+if [ -d "$out_dir" ] 
+then
+    echo "Directory exists !" 
+else	
+	mkdir "$out_dir"
+fi
+
+for (( i=1; i<=n_files; i++))
+do 
+    dir_name="${prefix}$i${suffix}"
+    cd ${dir_name}
+    new_name="${prefix}$i"
+    mv $out_file_name $new_name
+    cp -v ${new_name} ../"${out_dir}"
+    cd ..
+done

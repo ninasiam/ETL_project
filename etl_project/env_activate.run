@@ -1,0 +1,12 @@
+#!/bin/bash
+
+conda_path="$HOME/anaconda3/bin/"
+project_path_main="$HOME/Documents/my_projects/spitogatos_project/etl_project/etl_dir/"
+
+echo "Activating conda (base)"
+cd ${conda_path}
+source activate
+echo "Activating conda (SpaNportal_sg)"
+conda activate SpaNportal_sg
+echo "Changing to main directory"
+cd ${project_path_main}
