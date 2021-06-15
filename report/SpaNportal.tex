@@ -40,7 +40,7 @@
 %Information to be included in the title page:
 \title[Data Engineering assignment]{SpaNPortal}
 \author{Siaminou Ioanna}
-\date{12/6/2021} 
+\date{15/6/2021} 
  
  
 \begin{document}
@@ -69,9 +69,9 @@
 \frametitle{Data \& Dataflows}
 \begin{enumerate}
 \item The data provided, consisted of a relational database with geographical information, and a series of files, containing user searches logged in a json format.
-\item After the preprocessing, appropriate tranformations of the data, extraction of the useful attributes according to the given specifications.
+\item After the preprocessing, appropriate tranformations of the data follow, along with the extraction of the useful attributes according to the given specifications.
 \item The data are enriched with information provided by the second data source, the geography database.
-\item Finally, the final dataset is stored in the appropriate format, in order to be stored used efficiently.
+\item Finally, the final dataset is stored in the appropriate format, in order to be used efficiently.
 \item An overview of my approach follows in the next slide.
 \end{enumerate}
 \end{frame}
@@ -104,8 +104,8 @@
 \frametitle{Assignment implementation}
 \begin{enumerate}
 \item The project is implemented using Python programming language (version: Python 3.8.5).
-\item Pyspark is used since it is can perform computation and transformations on data efficiently.
-\item The project is accompanied with 2 bash scripts. 
+\item Pyspark is used since it can perform computations and transformations on data efficiently.
+\item The project is accompanied by 2 bash scripts. 
 \begin{itemize}
 \item To activate a conda environment.
 \item To manage the data directories.
@@ -118,7 +118,7 @@
 \frametitle{Some Notes}
 \begin{itemize}
 \item The data are preprocessed, in a separate application available in the project directory.
-\item Due to a datatype mismatch (false/False) and the interpretation of json objects from pyspark, the json files could not be loaded correctly.
+\item Due to a datatype mismatch (eg. false/False) and the interpretation of json objects from pyspark, the json files could not be loaded correctly.
 \item I chose to process them separately, using spark RDDs, to keep the pipeline as clean as possible.
 \item I am pretty sure that a more efficient way exists (a parameter on pyspark json read function maybe), but at the moment this approach seemed to me straightforward. 
 \end{itemize}
@@ -138,7 +138,7 @@
 \begin{itemize}
 \item The output datasets (cleaned, enriched) are saved as parquet files.
 \item The Parquet is a column oriented storage file available to any project on the Hadoop ecosystem.
-\item Aggregation queries are less time consuming compared to row oriented schemes. 
+\item Hence, aggregation queries are less time consuming compared to those on row oriented schemes. 
 \end{itemize}
 \end{frame}
 
@@ -146,10 +146,11 @@
 \begin{frame}
 \frametitle{Survey on each Municipality feature}
 \begin{itemize}
-\item New feature where the users of the portal will be
-asked to answer certain questions about each municipality.
+\item Finally, a new feature is requested that regards various attributes of each municipality.
+\item The users of the portal will be asked to answer certain questions about each municipality concerning criminality etc.
 \item The functionality for this feature will be implemented in a relational database.
 \item In the following slide, my approach is presented.
+\item Note that, the relationship of entities surveys-Multiple Choices is \textit{one to many}. 
 \end{itemize}
 \end{frame}
 
@@ -157,5 +158,14 @@ asked to answer certain questions about each municipality.
 \frametitle{Data Flow Diagram}
 \centering
 \includegraphics[scale=0.13]{ERD.png}
+\end{frame}
+
+\section{Conlusion}
+\begin{frame}
+\frametitle{Final Comments}
+\begin{itemize}
+\item For the data enrichment process only the country attribute is available on the enriched data.
+\item Comments and Docstrings are available on the each script.
+\end{itemize}
 \end{frame}
 \end{document}

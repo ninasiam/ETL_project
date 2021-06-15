@@ -2,3 +2,4 @@
 \beamer@sectionintoc {2}{Architecture}{4}{0}{2}
 \beamer@sectionintoc {3}{Implementation}{8}{0}{3}
 \beamer@sectionintoc {4}{Database Design}{12}{0}{4}
+\beamer@sectionintoc {5}{Conlusion}{14}{0}{5}
