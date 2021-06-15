@@ -5,7 +5,7 @@
    In the main() function the sparkSession is initialized and configured,
    along with the logging mechanism.
 
-   For logging see: to link tou mitchell
+   For logging see: https://www.timmitchell.net/post/2016/03/14/etl-logging/
 
    The ETL (extract, tranform, load) pipeline follows through three different functions
    (located on helpers.py)
@@ -78,14 +78,16 @@ def main() -> None:
     
     # Transform
     logger.warn("Transform process")
+    denormalizedDB = Transform.transformDB(spark, geographyDB)
     cleanData = Transform.cleanRecords(rawData)
     transformedData = Transform.replaceValues(cleanData)
-    # enriched_data = Transform.enrichData(transformedData, geographyDB)
+    enrichedData = Transform.enrichData(transformedData, denormalizedDB)
 
     # Load
     logger.warn("Load process") 
-    status = Load.loadCleaned(pathOut, transformedData)
-    if not status:
+    status_clean = Load.loadCleaned(pathOut, transformedData)
+    status_enriched = Load.loadEnriched(pathOut, enrichedData)
+    if not (status_clean and status_enriched):
         logger.warn("Load process failed")
     else:
         logger.warn(f"Pipeline Completed data saved at {pathOut}")
@@ -99,7 +101,6 @@ if __name__ == "__main__":
     # In case pyspark is not available the program terminates.
     try:
         from pyspark.sql import SparkSession
-
         # call main function
         main()
     except ImportError as error:

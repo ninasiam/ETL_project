@@ -161,20 +161,50 @@ class Transform(object):
         return transformedData
     
     @staticmethod
-    def transformDB(DB):
+    def transformDB(spark, DB):
         """ Data that correspond to areaIDs are extracted from the geography DB
             to create a new DataFrame with the 3 following columns:
-            |region name|municipality|country|
-            The level column of geography to recursively iterate 
-            the DB.
+            |geographyID|parentId|country|
 
             Args:
                 DB (spark.DataFrame): the geography database.
             Returns:
-                new_db (spark.DataFrame): a new database.
+                newDB (spark.DataFrame): a new database.
+
+            Note: this code used pandas. Hence it is not scalable.
+                An other approach could be the use of a recursive CTE
+                or graphframes for efficiency.
+
         """
-        # first a udf function is defined to find only the country!
-        pass
+        DB_new = DB.select("name", "geographyId", "parentId")        
+        pandasDB = DB_new.toPandas()
+        
+        pandasDB["country"] = pandasDB["name"]                                     # create a new column
+        pandasDB["geographyId"]  = pd.to_numeric(pandasDB["geographyId"])          # set the type to numeric
+        pandasDB["parentId"] = pd.to_numeric(pandasDB["parentId"])
+
+        pandasDB_reindexed = pandasDB.set_index('geographyId')                     # reindex the dataframe, using the geographyId as index
+                                                                                   # reindexing is necessary in oder to fetch the values more
+                                                                                   # efficiently.
+        for index, row in pandasDB_reindexed.iterrows():
+            # parentId  = 0, thus
+            if row["parentId"] == 0:
+                pandasDB_reindexed.at[index, "country"] = row["name"]
+            else:
+                # we need to look for the 'ancestors'
+                parentId_tmp = row["parentId"]
+                while parentId_tmp != 0:
+                    curr_id_prev = parentId_tmp
+                    parentId_tmp = pandasDB_reindexed.at[parentId_tmp, "parentId"]
+                pandasDB_reindexed.at[index, "country"] = pandasDB_reindexed.at[curr_id_prev,"name"]
+        
+        # drop the unnecessary column name
+        pandasDB_reindexed.drop(columns=["name"], inplace=True)
+        # reset the index
+        pandasDB_reindexed.reset_index(inplace=True)
+        newDB = spark.createDataFrame(pandasDB_reindexed)
+        return newDB
+
 
     @staticmethod
     def enrichData(data, DB):
@@ -193,9 +223,9 @@ class Transform(object):
         data_exploded = data.select(*columns, F.explode(data.areaIDs).alias("areaID"))
 
         
-        enriched_data = data_exploded.join(DB, data_exploded.areaID == DB.geographyId, 'left').select("areaID", "geographyId", "name","parentId", "level").show(10)
-        enriched_data_2 = enriched_data.filter(enriched_data.level == 0)
-        print(enriched_data_2.count())
+        enriched_data = data_exploded.join(DB, data_exploded.areaID == DB.geographyId, 'left') \
+                        .select(*columns, "areaID", "country")
+        return enriched_data
 
 class Load(object):
     """ The Load class contains methods that correspond to the 
@@ -231,17 +261,17 @@ class Load(object):
             
         Args:
             pathOut (str): path to the outPut files in the form path/to/dir/.
-            cleanedData (spark.DataFrame): the cleaned DataFrame to be stored.
+            enrichedData (spark.DataFrame): the cleaned DataFrame to be stored.
         Returns:
             status (int): True if the write is successful False otherwise.
 
         """
-        pathToCleanedData = pathOut + "enriched/"
+        pathToenrichedData = pathOut + "enriched/"
 
         try:
             # we choose to partition the data on country since the analysts perform analysis
             # on country level.
-            enrichedData.write.parquet(pathToCleanedData, mode="overwrite", partitionBy=["country"])
+            enrichedData.write.parquet(pathToenrichedData, mode="overwrite", partitionBy=["country"])
             return True
         except:
             return False
