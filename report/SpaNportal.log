@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.1)  15 JUN 2021 01:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.1)  15 JUN 2021 16:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1064,7 +1064,7 @@ Package caption Info: End \AtBeginDocument code.
 ] [4
 
 ]
-<ETL_arch.png, id=200, 3011.25pt x 1345.025pt>
+<ETL_arch.png, id=222, 3011.25pt x 1345.025pt>
 File: ETL_arch.png Graphic file (type png)
 <use ETL_arch.png>
 Package pdftex.def Info: ETL_arch.png  used on input line 83.
@@ -1082,7 +1082,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
  [6
 
 ]
-<dataFlow.png, id=277, 3432.825pt x 1346.02875pt>
+<dataFlow.png, id=305, 3432.825pt x 1346.02875pt>
 File: dataFlow.png Graphic file (type png)
 <use dataFlow.png>
 Package pdftex.def Info: dataFlow.png  used on input line 100.
@@ -1113,7 +1113,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ]
 [11
 
+] [12
+
 ]
+<ERD.png, id=545, 1951.29pt x 1443.3925pt>
+File: ERD.png Graphic file (type png)
+<use ERD.png>
+Package pdftex.def Info: ERD.png  used on input line 160.
+(pdftex.def)             Requested size: 253.6766pt x 187.64761pt.
+ [13
+
+ <./ERD.png>]
 \tf@nav=\write6
 \openout6 = `SpaNportal.nav'.
 
@@ -1123,19 +1133,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@snm=\write8
 \openout8 = `SpaNportal.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 144.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 144.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
  (./SpaNportal.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 144.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 144.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 Package rerunfilecheck Info: File `SpaNportal.out' has not changed.
-(rerunfilecheck)             Checksum: D2EE352AA8B8574A8B8CCC60D6297E1E;143.
+(rerunfilecheck)             Checksum: F1B0A5A40A6F5988795EF2645A6DE16D;193.
  ) 
 Here is how much of TeX's memory you used:
- 26089 strings out of 481239
- 512098 string characters out of 5920378
- 941604 words of memory out of 5000000
- 40739 multiletter control sequences out of 15000+600000
+ 26108 strings out of 481239
+ 512275 string characters out of 5920378
+ 942605 words of memory out of 5000000
+ 40752 multiletter control sequences out of 15000+600000
  557811 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,19n,68p,797b,788s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1143,10 +1153,10 @@ Here is how much of TeX's memory you used:
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/helvetic/uhvro8a.pfb>
-Output written on SpaNportal.pdf (11 pages, 320285 bytes).
+Output written on SpaNportal.pdf (13 pages, 423126 bytes).
 PDF statistics:
- 484 PDF objects out of 1000 (max. 8388607)
- 440 compressed objects within 5 object streams
- 26 named destinations out of 1000 (max. 500000)
- 83 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 610 PDF objects out of 1000 (max. 8388607)
+ 558 compressed objects within 6 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

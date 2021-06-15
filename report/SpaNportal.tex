@@ -136,9 +136,26 @@
 \begin{frame}
 \frametitle{Output files}
 \begin{itemize}
-\item The output datasets (cleaned, enriched) are saved as a parquet files.
+\item The output datasets (cleaned, enriched) are saved as parquet files.
 \item The Parquet is a column oriented storage file available to any project on the Hadoop ecosystem.
 \item Aggregation queries are less time consuming compared to row oriented schemes. 
 \end{itemize}
+\end{frame}
+
+\section{Database Design}
+\begin{frame}
+\frametitle{Survey on each Municipality feature}
+\begin{itemize}
+\item New feature where the users of the portal will be
+asked to answer certain questions about each municipality.
+\item The functionality for this feature will be implemented in a relational database.
+\item In the following slide, my approach is presented.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data Flow Diagram}
+\centering
+\includegraphics[scale=0.13]{ERD.png}
 \end{frame}
 \end{document}
