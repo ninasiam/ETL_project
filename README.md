@@ -3,10 +3,10 @@ ETL pipeline to process, enrich and load the data collected from user searches o
     
    In the directory `etl_dir/`: \
       - `ETL_fun.py` contains the functionality for the ETL pipeline. \
-      - `etl_main.py` contain the main function, that initializes the sparkSession. \
+      - `etl_main.py` contains the main function, that initializes the sparkSession. \
       - `preprocess_data.py` initializes a sparkSession to preprocess the log files.
         
-   In the project directory two shell scripts exist, that activate the conda enviroment and manage the directories.
+   In the project directory, two shell scripts exist, that activate the conda enviroment and manage the directories.
    
    In the directory `report/`: \
       - the file `slides.pdf` is a small report on my approach.
