@@ -1,7 +1,7 @@
 # ETL_project
 ETL pipeline to process, enrich and load the data collected from user searches on SpaN portal. 
     
-   In the directory `etl_dir/`: \
+   In the directory `etl_project/etl_dir/`: \
       - `ETL_fun.py` contains the functionality for the ETL pipeline. \
       - `etl_main.py` contains the main function, that initializes the sparkSession. \
       - `preprocess_data.py` initializes a sparkSession to preprocess the log files.
