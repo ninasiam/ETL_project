@@ -12,5 +12,5 @@ ETL pipeline to process, enrich and load the data collected from user searches o
       - the file `slides.pdf` is a small report on my approach.
    
    ## Built with
-  - tools: pyspark, pandas.
+  - tools: pyspark, pandas
   - python version: 3.8.5
