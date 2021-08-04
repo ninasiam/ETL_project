@@ -1,5 +1,8 @@
 """preprocess_data.py 
    Script to tranform a log file to a json format.
+
+   Author: Nina Siaminou, June 2021
+
    
 """
 import json

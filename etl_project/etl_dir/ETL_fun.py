@@ -9,6 +9,9 @@ Specifically:
 
      * class Load
 
+
+Author: Nina Siaminou, June 2021
+
 """
 import os
 import ast

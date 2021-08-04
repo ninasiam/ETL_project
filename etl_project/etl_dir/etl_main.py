@@ -11,7 +11,9 @@
    (located on helpers.py)
 
    Requires: findSpark, pandas, numpy, pyspark.
-
+    
+   Author: Nina Siaminou, June 2021
+    
 """
 
 import json
